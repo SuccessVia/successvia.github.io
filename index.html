@@ -53,6 +53,12 @@
       sizes="144x144"
       href="/img/FavIcon-144.png"
     />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+      .grecaptcha-badge {
+        display: none;
+      }
+    </style>
   </head>
 
   <body id="page-top">
@@ -292,7 +298,14 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button
+                    class="btn btn-primary g-recaptcha"
+                    data-sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"
+                    data-callback="onSubmit"
+                    data-badge="inline"
+                  >
+                    Submit
+                  </button>
                   <div class="col-sm text-muted mt-1" id="form-message"></div>
                 </div>
               </div>
@@ -304,7 +317,7 @@
     <script type="text/javascript">
       var form = document.getElementById("my-contact-form");
       var formMessage = document.getElementById("form-message");
-      form.onsubmit = function(event) {
+      function onSubmit(token) {
         event.preventDefault();
         var formData = new FormData(form);
         var xhr = new XMLHttpRequest();
@@ -320,7 +333,7 @@
           }
         };
         xhr.send(formData);
-      };
+      }
     </script>
 
     <!-- Footer -->
